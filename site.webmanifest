@@ -1,0 +1,17 @@
+{
+  "name": "NexusLine GRC Platform",
+  "short_name": "NexusLine",
+  "description": "Enterprise governance, risk & compliance \u2014 managed cloud or on-premise.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f1e7",
+  "theme_color": "#122238",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
