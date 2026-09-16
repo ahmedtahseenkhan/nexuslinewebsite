@@ -14,7 +14,7 @@ couldn't grow. It has been **de-bundled** into the structure below. The original
 .
 ├── index.html            # Home (full landing page)
 ├── platform.html         # Platform overview
-├── modules.html          # 57-module catalogue (anchors: #risk #compliance #governance …)
+├── modules.html          # 64-module catalogue (anchors: #risk #compliance #governance …)
 ├── intelligence.html     # Document intelligence
 ├── security.html         # Security & audit
 ├── deployment.html       # Cloud / on-premise / air-gapped

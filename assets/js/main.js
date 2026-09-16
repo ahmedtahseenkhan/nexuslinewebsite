@@ -52,14 +52,14 @@
     if (counted) return; counted = true;
     document.querySelectorAll('[data-count]').forEach(function(el){
       var target = parseInt(el.getAttribute('data-count'), 10);
-      if (reduce){ el.textContent = target; return; }
+      if (reduce){ el.textContent = target.toLocaleString('en-US'); return; }
       var start = null, dur = 1100;
       function step(ts){
         if (!start) start = ts;
         var p = Math.min((ts - start) / dur, 1);
         var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased);
-        if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+        el.textContent = Math.round(target * eased).toLocaleString('en-US');
+        if (p < 1) requestAnimationFrame(step); else el.textContent = target.toLocaleString('en-US');
       }
       requestAnimationFrame(step);
     });
