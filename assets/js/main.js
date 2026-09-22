@@ -71,6 +71,36 @@
     io2.observe(band);
   } else { runCount(); }
 
+  /* demo request forms — post to FormSubmit, which emails info@nexusline.io.
+     Without JS the form still submits normally and FormSubmit shows its own thank-you page. */
+  document.querySelectorAll('form[data-demo-form]').forEach(function(form){
+    var status = form.querySelector('.form-status');
+    var btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', function(e){
+      if (!window.fetch || !window.FormData) return;
+      e.preventDefault();
+      var data = {};
+      new FormData(form).forEach(function(v, k){ data[k] = v; });
+      btn.disabled = true;
+      status.className = 'form-status'; status.textContent = 'Sending…';
+      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(data)
+      }).then(function(r){ return r.json().then(function(j){ if (!r.ok || String(j.success) !== 'true') throw j; }); })
+        .then(function(){
+          form.reset();
+          status.className = 'form-status ok';
+          status.textContent = 'Thanks — your request has been sent. We\'ll be in touch shortly.';
+        })
+        .catch(function(){
+          status.className = 'form-status err';
+          status.textContent = 'Something went wrong. Please email info@nexusline.io directly.';
+        })
+        .then(function(){ btn.disabled = false; });
+    });
+  });
+
   /* active nav — mark the link for the current page */
   try {
     var page = (document.body.getAttribute('data-page') || '').trim();
