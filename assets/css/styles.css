@@ -113,15 +113,11 @@ section{position:relative;}
 .tb-tag{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-soft); display:inline-flex; align-items:center; gap:12px;}
 .tb-tag::before{content:""; width:22px; height:1px; background:var(--accent); opacity:.8;}
 .tb-right{display:flex; align-items:center; gap:18px;}
-.tb-status{display:inline-flex; align-items:center; gap:9px; color:var(--on-ink); font-weight:500;}
-.tb-status .dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(63,125,90,.5); animation:tb-pulse 2.6s ease-out infinite;}
-@keyframes tb-pulse{0%{box-shadow:0 0 0 0 rgba(63,125,90,.5);}70%{box-shadow:0 0 0 8px rgba(63,125,90,0);}100%{box-shadow:0 0 0 0 rgba(63,125,90,0);}}
-.tb-sep{width:1px; height:14px; background:rgba(124,192,255,.24);}
 .tb-right a{color:var(--on-ink-2); display:inline-flex; align-items:center; gap:7px; transition:color .2s;}
 .tb-right a:hover{color:#fff;}
 .tb-right a svg{width:14px; height:14px; opacity:.72;}
 @media (max-width:720px){ .tb-tag{display:none;} .topbar-row{justify-content:flex-end;} }
-@media (max-width:600px){ .tb-sep{display:none;} .tb-right a{display:none;} .tb-status{font-size:12px;} }
+@media (max-width:600px){ .tb-right a{display:none;} }
 
 header.nav{
   position:sticky; top:0; z-index:100;
@@ -208,6 +204,11 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
     linear-gradient(0deg, rgba(10,22,38,.55), transparent 40%),
     url("../img/hero-grc-banner.jpg") center/cover no-repeat,
     var(--ink);
+  background:
+    linear-gradient(90deg, rgba(10,22,38,.94) 0%, rgba(12,26,44,.82) 42%, rgba(12,26,44,.45) 100%),
+    linear-gradient(0deg, rgba(10,22,38,.55), transparent 40%),
+    image-set(url("../img/hero-grc-banner.webp") type("image/webp"), url("../img/hero-grc-banner.jpg") type("image/jpeg")) center/cover no-repeat,
+    var(--ink);
 }
 .hero.hero-banner h1 .hl{color:var(--accent-soft);}
 /* banner runs up behind the utility bar + nav (40px + 74px) */
@@ -246,7 +247,10 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
 @media (max-width:1040px){
   .hero-banner{background:
     linear-gradient(rgba(10,22,38,.86), rgba(10,22,38,.9)),
-    url("../img/hero-grc-banner.jpg") center/cover no-repeat, var(--ink);}
+    url("../img/hero-grc-banner.jpg") center/cover no-repeat, var(--ink);
+    background:
+    linear-gradient(rgba(10,22,38,.86), rgba(10,22,38,.9)),
+    image-set(url("../img/hero-grc-banner.webp") type("image/webp"), url("../img/hero-grc-banner.jpg") type("image/jpeg")) center/cover no-repeat, var(--ink);}
 }
 .hero-inner{padding:clamp(56px,8vw,100px) 0 clamp(64px,8vw,100px);}
 /* .hero-inner and .trust-inner zero the .wrap side gutter with their padding shorthand; put it back
@@ -283,6 +287,7 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
 .browser-dots i{width:11px; height:11px; border-radius:50%; background:var(--line-2);}
 .browser-dots i:first-child{background:#e0897c;} .browser-dots i:nth-child(2){background:#e0be76;} .browser-dots i:nth-child(3){background:#84b599;}
 .browser-url{flex:1; margin-left:6px; font-family:var(--mono); font-size:11px; color:var(--faint); background:#fff; border:1px solid var(--line); border-radius:6px; padding:6px 12px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.browser picture{display:block;}
 .browser-shot{display:block; width:100%; height:auto;}
 .browser-badge{position:absolute; right:-16px; bottom:20px; background:var(--ink); color:var(--accent-soft); font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.1em; padding:9px 14px; border-radius:8px; box-shadow:0 18px 34px -16px rgba(18,34,56,.6); text-transform:uppercase; z-index:2;}
 
@@ -335,7 +340,6 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
 .stat{padding:clamp(30px,4vw,50px) 24px; text-align:center; border-right:1px solid var(--line-dark);}
 .stat:last-child{border-right:none;}
 .stat b{display:block; font-family:var(--serif); font-size:clamp(40px,5.4vw,60px); font-weight:500; color:#f7faff; letter-spacing:-0.01em; line-height:1;}
-.stat b .u{color:var(--accent-soft); font-size:.55em;}
 .stat span{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--on-ink-2); margin-top:14px; display:block;}
 
 /* module map */
@@ -441,7 +445,6 @@ table.deploy td{color:var(--muted);}
 table.deploy td b{color:var(--text-strong); font-weight:600;}
 table.deploy tr:last-child th, table.deploy tr:last-child td{border-bottom:none;}
 table.deploy .col-onprem{background:var(--accent-weak);}
-.chk{color:var(--accent-deep); font-weight:700; margin-right:6px;}
 
 /* ---------------------------------------------------------------- Pakistan section (light, distinct) */
 .pk{background:var(--paper-2);}

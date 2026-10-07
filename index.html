@@ -219,7 +219,10 @@
             <div class="browser-dots"><i></i><i></i><i></i></div>
             <div class="browser-url">app.nexusline.io/dashboard</div>
           </div>
-          <img class="browser-shot" src="/assets/img/dashboard-preview.png" alt="NexusLine governance &amp; risk dashboard — health score, needs-your-attention queue, risk matrix and compliance" width="2516" height="1652" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="/assets/img/dashboard-preview-640.webp 640w, /assets/img/dashboard-preview-1280.webp 1280w" sizes="(max-width: 1040px) min(520px, 100vw - 40px), 520px">
+            <img class="browser-shot" src="/assets/img/dashboard-preview.png" alt="NexusLine governance &amp; risk dashboard — health score, needs-your-attention queue, risk matrix and compliance" width="2516" height="1652" fetchpriority="high" decoding="async">
+          </picture>
           <span class="browser-badge">Live governance dashboard</span>
         </div>
       </div>
