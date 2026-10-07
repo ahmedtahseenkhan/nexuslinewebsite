@@ -255,10 +255,8 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
     linear-gradient(rgba(10,22,38,.86), rgba(10,22,38,.9)),
     image-set(url("../img/hero-grc-banner.webp") type("image/webp"), url("../img/hero-grc-banner.jpg") type("image/jpeg")) center/cover no-repeat, var(--ink);}
 }
-.hero-inner{padding:clamp(56px,8vw,100px) 0 clamp(64px,8vw,100px);}
-/* .hero-inner and .trust-inner zero the .wrap side gutter with their padding shorthand; put it back
-   wherever the viewport is too narrow to leave one (wide desktop layouts are unchanged) */
-.wrap.hero-inner, .wrap.trust-inner{padding-left:max(0px, clamp(20px,5vw,44px) - max(0px, (100vw - var(--maxw)) / 2)); padding-right:max(0px, clamp(20px,5vw,44px) - max(0px, (100vw - var(--maxw)) / 2));}
+/* vertical padding only: these sit on .wrap, whose side gutter aligns them with the nav */
+.hero-inner{padding-top:clamp(56px,8vw,100px); padding-bottom:clamp(64px,8vw,100px);}
 .hero-grid{display:grid; grid-template-columns:1.12fr .88fr; gap:clamp(34px,5vw,68px); align-items:center;}
 .hero h1{font-size:clamp(42px,5.8vw,74px); letter-spacing:-0.02em; line-height:1.03; font-weight:500;}
 .hero h1 .hl{color:var(--accent-deep); font-style:italic;}
@@ -283,7 +281,7 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
 .hero-meta .m span{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);}
 
 /* hero visual: product screenshot in browser frame */
-.hero-viz{position:relative;}
+.hero-viz{position:relative; min-width:0;} /* lets the URL bar ellipsize on narrow phones */
 .browser{border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow-lg); position:relative;}
 .browser-bar{display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--ivory-deep); border-bottom:1px solid var(--line);}
 .browser-dots{display:flex; gap:7px;}
@@ -296,7 +294,7 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
 
 /* trust strip */
 .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--ivory-deep);}
-.trust-inner{display:flex; align-items:center; gap:clamp(18px,3vw,42px); flex-wrap:wrap; padding:24px 0;}
+.trust-inner{display:flex; align-items:center; gap:clamp(18px,3vw,42px); flex-wrap:wrap; padding-top:24px; padding-bottom:24px;}
 .trust-label{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint);}
 .trust-items{display:flex; gap:clamp(14px,2.6vw,32px); flex-wrap:wrap; align-items:center;}
 .trust-items span{font-size:14px; font-weight:500; color:var(--text); letter-spacing:.005em; display:inline-flex; align-items:center; gap:9px;}
