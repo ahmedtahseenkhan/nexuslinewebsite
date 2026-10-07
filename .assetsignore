@@ -11,6 +11,5 @@
 node_modules
 README.md
 wrangler.jsonc
-legacy
 scripts
 assets/partials
