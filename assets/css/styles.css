@@ -107,6 +107,7 @@ section{position:relative;}
 .btn .arr{transition:transform .2s ease;}
 .btn:hover .arr{transform:translateX(3px);}
 .btn-lg{padding:16px 30px; font-size:16px;}
+@media (max-width:460px){ .btn-lg{white-space:normal; text-align:center; max-width:100%;} } /* long labels wrap instead of overflowing */
 
 /* ---------------------------------------------------------------- header — corporate */
 .topbar{background:linear-gradient(90deg,#0d1b2e,var(--ink) 46%,#16283f); color:var(--on-ink-2); font-family:var(--sans); position:relative;}
