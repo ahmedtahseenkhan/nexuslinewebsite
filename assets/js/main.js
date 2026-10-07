@@ -144,6 +144,22 @@
     });
   });
 
+  /* FAQ structured data, built from the FAQ markup so the two never drift apart.
+     Skipped while the section is hidden or any answer still says TODO. */
+  var faq = document.getElementById('faq');
+  if (faq && !faq.hidden) {
+    var qa = Array.prototype.map.call(faq.querySelectorAll('.faq-item'), function(d){
+      return {'@type': 'Question', name: d.querySelector('summary').textContent.trim(),
+              acceptedAnswer: {'@type': 'Answer', text: d.querySelector('.faq-a').textContent.trim()}};
+    });
+    if (qa.length && !/TODO/.test(JSON.stringify(qa))) {
+      var ld = document.createElement('script');
+      ld.type = 'application/ld+json';
+      ld.textContent = JSON.stringify({'@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qa});
+      document.head.appendChild(ld);
+    }
+  }
+
   /* active nav — mark the link for the current page */
   try {
     var page = (document.body.getAttribute('data-page') || '').trim();
