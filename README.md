@@ -1,7 +1,8 @@
 # NexusLine — GRC marketing site
 
-A fast, SEO-friendly, **static** multi-page website. No build step, no framework — just
-open the files or serve the folder with any static host (Netlify, Vercel, S3, Nginx, GitHub Pages).
+A fast, SEO-friendly, **static** multi-page website. No build step, no framework. It is deployed
+on **Cloudflare Workers static assets** (`wrangler.jsonc`), which serves pages at clean URLs:
+`/platform` serves `platform.html`, and `/platform.html` redirects to `/platform`.
 
 Previously the whole site was a single 2.4 MB self-unpacking `NexusLine.html` where all content
 was JSON-encoded on one line and rendered by JavaScript. Search engines saw almost nothing and it
@@ -20,62 +21,88 @@ couldn't grow. It has been **de-bundled** into the structure below. The original
 ├── deployment.html       # Cloud / on-premise / air-gapped
 ├── pakistan.html         # Pakistan · SBP
 ├── contact.html          # Contact + demo request form
-├── 404.html              # Not-found page
+├── privacy.html          # Privacy policy — TODO scaffold, noindex until filled in
+├── terms.html            # Terms of use — TODO scaffold, noindex until filled in
+├── thank-you.html        # Form confirmation for visitors without JavaScript (noindex)
+├── 404.html              # Not-found page (served by Cloudflare for unknown URLs)
 │
 ├── assets/
 │   ├── css/
 │   │   ├── fonts.css      # @font-face — self-hosted Newsreader / IBM Plex Sans / IBM Plex Mono
 │   │   └── styles.css     # design tokens (:root) + all component styles — edit once, restyles every page
 │   ├── js/
-│   │   └── main.js        # nav scroll state, mobile menu, reveal-on-scroll, tabs, count-up, active-nav
+│   │   ├── main.js        # nav, mobile menu, reveal, tabs, count-up, demo forms, FAQ schema, active-nav
+│   │   └── consent.js     # cookie banner + Google Analytics 4 (set GA_ID at the top)
 │   ├── fonts/             # self-hosted .woff2 subsets (privacy / on-prem friendly)
-│   ├── img/               # dashboard-preview.png (also the OG/Twitter share image)
+│   ├── img/               # hero screenshot (+ WebP sizes), hero banner, og-image.jpg (1200x630), app icons
 │   └── partials/
 │       ├── header.html    # canonical header markup — source of truth for the nav
 │       └── footer.html    # canonical footer markup
 │
-├── favicon.svg
+├── favicon.svg / favicon.ico / apple-touch-icon.png
 ├── site.webmanifest
 ├── robots.txt
 ├── sitemap.xml           # update <lastmod> and add new <url> entries when you add pages
-└── legacy/               # the original single-file bundle (archived)
+│
+├── _headers              # Cloudflare: security headers (CSP, HSTS …) and font caching
+├── _redirects            # Cloudflare: 301s from the old .html URLs
+├── .assetsignore         # Cloudflare: files that must never be published (.git, README, legacy/ …)
+├── wrangler.jsonc        # Cloudflare Workers config (404 page, clean URLs)
+├── scripts/serve.py      # local preview server that behaves like Cloudflare
+└── legacy/               # the original single-file bundle (archived, not deployed)
 ```
 
 ## How to add a new page
 
 1. Copy an existing page (e.g. `platform.html`) to `your-page.html`.
-2. Update the `<head>`: `<title>`, `<meta name="description">`, `<link rel="canonical">`,
-   the Open Graph / Twitter tags, and the JSON-LD `WebPage` + `BreadcrumbList`.
+2. Update the `<head>`: `<title>` (under 60 characters), `<meta name="description">` (under 160),
+   `<link rel="canonical">`, the Open Graph / Twitter tags, and the JSON-LD `WebPage` +
+   `BreadcrumbList`. Use clean URLs everywhere: `https://nexusline.io/your-page`, and link to it
+   as `/your-page` (root-relative, no `.html`).
 3. Set `<body data-page="your-page">` — `main.js` uses it to highlight the matching nav link.
 4. Keep the header/footer identical to `assets/partials/header.html` / `footer.html`
    (paste them in). To add a nav link, edit **both** partials and every page's inline copy,
    or switch to a static-site generator (see below).
-5. Add the page to `sitemap.xml` and, if relevant, link to it from the header/footer.
+5. Add the page to `sitemap.xml`, add `/your-page.html /your-page 301` to `_redirects`, and, if
+   relevant, link to it from the header/footer.
 
 ## SEO checklist (already in place)
 
-- One `<h1>` per page, semantic `<header>/<main>/<footer>/<nav>`, descriptive `alt` text.
-- Unique `<title>` + `<meta name="description">` + `<link rel="canonical">` per page.
-- Open Graph + Twitter Card tags; share image at `assets/img/dashboard-preview.png`.
+- One `<h1>` per page and no skipped heading levels, semantic `<header>/<main>/<footer>/<nav>`,
+  descriptive `alt` text.
+- Unique `<title>` + `<meta name="description">` + `<link rel="canonical">` per page, all on clean URLs.
+- Open Graph + Twitter Card tags; 1200x630 share image at `assets/img/og-image.jpg`.
 - JSON-LD structured data: `Organization`, `WebSite`, `WebPage`, `BreadcrumbList`
-  (+ `SoftwareApplication` on home & platform).
-- `robots.txt`, `sitemap.xml`, `site.webmanifest`, SVG favicon, `theme-color`.
+  (+ `SoftwareApplication` on home & platform, + `FAQPage` generated by `main.js` once the home
+  page FAQ is filled in and un-hidden).
+- `robots.txt`, `sitemap.xml`, `site.webmanifest`, SVG/ICO/PNG icons, `theme-color`.
 - Self-hosted fonts with `font-display:swap` (no third-party requests — good for privacy and for
   the on-prem/air-gapped positioning).
 
 ## Design tokens
 
 All colours, fonts and spacing live in `:root` at the top of `assets/css/styles.css`
-(navy `--ink:#122238`, brass `--brass:#b48a4c`, paper `--paper:#f6f1e7`; Newsreader / IBM Plex
-Sans / IBM Plex Mono). Change them there to re-theme the whole site.
+(navy `--ink:#122238`, blue accent `--accent:#1f6fd6`, paper `--paper:#f3f6fa`; Newsreader /
+IBM Plex Sans / IBM Plex Mono). Change them there to re-theme the whole site. Text colours are
+tuned to WCAG AA (4.5:1); re-check contrast if you change them.
 
 ## Local preview
 
 ```bash
-python3 -m http.server 8000     # then open http://localhost:8000
+python3 scripts/serve.py        # then open http://localhost:8000
 ```
 
-Use a server (not `file://`) so root-relative paths, the manifest and fonts all resolve.
+This mimics Cloudflare: clean URLs, `_redirects`, `_headers` (including the CSP), `.assetsignore`
+and the 404 page. A plain `python3 -m http.server` will not resolve links like `/platform`.
+
+## Analytics and forms
+
+- **Demo forms** post to FormSubmit (`https://formsubmit.co/info@nexusline.io`), which emails each
+  request to info@nexusline.io. Spam: FormSubmit honeypot field `_honey`. With JavaScript the form
+  submits in place and shows a message; without it, FormSubmit redirects to `/thank-you`.
+- **Google Analytics 4** lives in `assets/js/consent.js`. Set `GA_ID` at the top of that file;
+  until then no banner is shown and nothing is tracked. GA is only loaded after the visitor clicks
+  Accept, and a successful demo request fires the `generate_lead` event.
 
 ## Scaling up later
 
