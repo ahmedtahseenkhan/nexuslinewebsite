@@ -12,9 +12,9 @@
   /* deep navy inks */
   --ink:#122238; --ink-2:#182e49; --ink-3:#22405f;
   /* text on light */
-  --text:#25303f; --text-strong:#101c2c; --muted:#586576; --faint:#8b96a3;
+  --text:#25303f; --text-strong:#101c2c; --muted:#586576; --faint:#606b79; /* faint/on-ink-3 meet WCAG AA 4.5:1 on every surface they sit on */
   /* text on ink */
-  --on-ink:#e6edf6; --on-ink-2:#aab6c5; --on-ink-3:#78859a;
+  --on-ink:#e6edf6; --on-ink-2:#aab6c5; --on-ink-3:#8a96a8;
   /* blue accent family */
   --accent:#1f6fd6; --accent-deep:#1757ad; --accent-bright:#3d8ff0; --accent-soft:#7cc0ff; --accent-weak:#e2eefc;
   /* light hairlines / dark hairlines */
@@ -44,6 +44,8 @@ a:hover{color:var(--accent);}
 img,svg{display:block; max-width:100%;}
 ::selection{background:var(--accent); color:#fff;}
 :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px;}
+/* the blue ring is under 3:1 on navy; use the light accent on dark surfaces */
+.dark :focus-visible, .topbar :focus-visible, footer :focus-visible, .has-banner header.nav:not(.scrolled) :focus-visible{outline-color:var(--accent-soft);}
 .tnum{font-variant-numeric:tabular-nums;}
 
 /* skip link */
@@ -184,8 +186,8 @@ header.nav.scrolled{ background:rgba(251,252,254,.94); border-color:var(--line-2
   .menu-btn{display:inline-flex;}
   .mobile-menu{display:block; position:fixed; inset:auto 0 auto 0; top:114px; z-index:99;
     background:var(--card); border-bottom:1px solid var(--line); box-shadow:var(--shadow-lg);
-    padding:16px clamp(20px,5vw,44px) 26px; transform:translateY(-14px); opacity:0; pointer-events:none; transition:opacity .22s, transform .22s;}
-  .mobile-menu.open{opacity:1; transform:none; pointer-events:auto;}
+    padding:16px clamp(20px,5vw,44px) 26px; transform:translateY(-14px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .22s, transform .22s, visibility .22s;}
+  .mobile-menu.open{opacity:1; visibility:visible; transform:none; pointer-events:auto;}
   .mobile-menu a{display:block; padding:14px 4px; font-size:16px; color:var(--text); border-bottom:1px solid var(--line);}
   .mobile-menu .btn{width:100%; margin-top:18px; border-radius:999px; justify-content:center;}
 }
@@ -493,6 +495,7 @@ footer{border-top:1px solid var(--line-dark); padding:56px 0 42px; background:#0
 .foot-brand .brand{color:#f7faff;}
 .foot-brand .monogram{background:transparent; border-color:var(--on-ink-2); color:#f7faff;}
 .foot-brand .wordmark{color:#f7faff;}
+.foot-brand .wordmark small{color:var(--accent-soft);}
 .foot-col h2{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-soft); margin-bottom:18px; font-weight:500; line-height:1.55;}
 .foot-col a{display:block; font-size:14px; color:var(--on-ink-2); padding:6px 0; transition:color .2s;}
 .foot-col a:hover{color:#fff;}

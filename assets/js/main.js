@@ -17,8 +17,10 @@
     var open = mm.classList.toggle('open');
     mb.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  mm.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){ mm.classList.remove('open'); mb.setAttribute('aria-expanded','false'); });
+  function closeMenu(){ mm.classList.remove('open'); mb.setAttribute('aria-expanded','false'); }
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && mm.classList.contains('open')){ closeMenu(); mb.focus(); }
   });
 
   /* reveal on scroll */
@@ -32,16 +34,24 @@
     revs.forEach(function(el){ io.observe(el); });
   }
 
-  /* tabs */
+  /* tabs — WAI-ARIA tabs pattern: one tab stop, arrow keys / Home / End move between tabs */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  tabs.forEach(function(t){
-    t.addEventListener('click', function(){
-      var id = t.getAttribute('data-tab');
-      tabs.forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-selected','false'); });
-      t.classList.add('on'); t.setAttribute('aria-selected','true');
-      document.querySelectorAll('.tabpanel').forEach(function(p){ p.classList.remove('on'); });
-      var panel = document.getElementById('tab-' + id);
-      if (panel) panel.classList.add('on');
+  function selectTab(t){
+    var id = t.getAttribute('data-tab');
+    tabs.forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-selected','false'); x.setAttribute('tabindex','-1'); });
+    t.classList.add('on'); t.setAttribute('aria-selected','true'); t.removeAttribute('tabindex');
+    document.querySelectorAll('.tabpanel').forEach(function(p){ p.classList.remove('on'); });
+    var panel = document.getElementById('tab-' + id);
+    if (panel) panel.classList.add('on');
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(t); });
+    t.addEventListener('keydown', function(e){
+      var next = {ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1}[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      var target = tabs[(next + tabs.length) % tabs.length];
+      selectTab(target); target.focus();
     });
   });
 

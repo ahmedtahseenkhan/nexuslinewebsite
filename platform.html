@@ -264,13 +264,13 @@
       <h2 class="h-sec">Not a form builder. A real lifecycle for every discipline.</h2>
     </div>
     <div class="tabs reveal" role="tablist" aria-label="Capability domains">
-      <button class="tab on" data-tab="risk" role="tab" aria-selected="true">Risk</button>
-      <button class="tab" data-tab="compliance" role="tab" aria-selected="false">Compliance &amp; Assurance</button>
-      <button class="tab" data-tab="governance" role="tab" aria-selected="false">Governance &amp; Board</button>
-      <button class="tab" data-tab="operations" role="tab" aria-selected="false">Operations &amp; Continuity</button>
+      <button class="tab on" data-tab="risk" role="tab" id="tab-btn-risk" aria-controls="tab-risk" aria-selected="true">Risk</button>
+      <button class="tab" data-tab="compliance" role="tab" id="tab-btn-compliance" aria-controls="tab-compliance" tabindex="-1" aria-selected="false">Compliance &amp; Assurance</button>
+      <button class="tab" data-tab="governance" role="tab" id="tab-btn-governance" aria-controls="tab-governance" tabindex="-1" aria-selected="false">Governance &amp; Board</button>
+      <button class="tab" data-tab="operations" role="tab" id="tab-btn-operations" aria-controls="tab-operations" tabindex="-1" aria-selected="false">Operations &amp; Continuity</button>
     </div>
 
-    <div class="tabpanel on" id="tab-risk" role="tabpanel">
+    <div class="tabpanel on" id="tab-risk" role="tabpanel" aria-labelledby="tab-btn-risk" tabindex="0">
       <div class="grid g-3">
         <div class="card"><span class="tagk">Risk Register</span><h3>A statement, not a title</h3><p>Cause, event and consequence; impact scored per dimension; inherent → residual → target on your own matrix; appetite per risk category. Every score change carries a written rationale.</p></div>
         <div class="card"><span class="tagk">Operational Risk</span><h3>Full Basel toolkit</h3><p>RCSA campaigns, KRIs with defined formulas, amber/red escalation to a named owner and live data feeds, and the loss database — mapped to the seven Basel event types.</p></div>
@@ -281,7 +281,7 @@
       </div>
     </div>
 
-    <div class="tabpanel" id="tab-compliance" role="tabpanel">
+    <div class="tabpanel" id="tab-compliance" role="tabpanel" aria-labelledby="tab-btn-compliance" tabindex="0">
       <div class="grid g-3">
         <div class="card"><span class="tagk">Framework Library</span><h3>Seventeen standards, one click</h3><p>ISO 27001, NIST CSF 2.0 and SP 800-53, PCI DSS 4.0, SOC 2, Basel, Shariah and four SBP packs — 1,333 clauses, and control frameworks bring their controls with them.</p></div>
         <div class="card"><span class="tagk">Compliance</span><h3>Map once, prove everywhere</h3><p>Suggested clauses for the controls you wrote, crosswalk suggestions between frameworks, and a Statement of Applicability exported to XLSX or PDF.</p></div>
@@ -292,7 +292,7 @@
       </div>
     </div>
 
-    <div class="tabpanel" id="tab-governance" role="tabpanel">
+    <div class="tabpanel" id="tab-governance" role="tabpanel" aria-labelledby="tab-btn-governance" tabindex="0">
       <div class="grid g-3">
         <div class="card"><span class="tagk">Policy Management</span><h3>Draft to acknowledgment</h3><p>Draft, review, approve, publish — four-eyes at each step — with the approving committee, periodic reviews and acknowledgement tracked by role.</p></div>
         <div class="card"><span class="tagk">Board &amp; Committees</span><h3>Meetings to board packs</h3><p>Committees, meetings and decisions — and a board pack (PDF and spreadsheet) generated from the live register, automatically before each meeting.</p></div>
@@ -303,7 +303,7 @@
       </div>
     </div>
 
-    <div class="tabpanel" id="tab-operations" role="tabpanel">
+    <div class="tabpanel" id="tab-operations" role="tabpanel" aria-labelledby="tab-btn-operations" tabindex="0">
       <div class="grid g-3">
         <div class="card"><span class="tagk">Incidents</span><h3>Detection to closure</h3><p>Severity, a minute-level timeline, MTTD/MTTR and links to the risks, assets and controls involved — with the regulator’s notification deadline counting down.</p></div>
         <div class="card"><span class="tagk">Business Continuity</span><h3>Plans &amp; exercises</h3><p>Continuity plans with a recurring exercise calendar and tested recovery strategies — sign-off tracked, never assumed.</p></div>
