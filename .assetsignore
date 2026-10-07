@@ -1,0 +1,16 @@
+# Cloudflare uploads this whole folder as public assets (wrangler.jsonc → assets.directory ".").
+# Everything listed here stays private. Same syntax as .gitignore.
+.git
+.github
+.gitignore
+.assetsignore
+.DS_Store
+.wrangler
+.dev.vars*
+.env*
+node_modules
+README.md
+wrangler.jsonc
+legacy
+scripts
+assets/partials

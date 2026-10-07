@@ -1,0 +1,12 @@
+# Permanent redirects, applied by Cloudflare before any asset is served.
+# Format: <from> <to> <status>
+# Pages are served at clean URLs (/platform, not /platform.html); these turn the
+# host's default temporary 307 for the .html form into a permanent 301.
+/index.html          /              301
+/platform.html       /platform      301
+/modules.html        /modules       301
+/intelligence.html   /intelligence  301
+/security.html       /security      301
+/deployment.html     /deployment    301
+/contact.html        /contact       301
+/pakistan.html       /pakistan      301
