@@ -634,39 +634,38 @@
 </section>
 
 <!-- ======================================================= FAQ
-     TODO: confirm the questions, write the answers, then remove the `hidden` attribute below.
-     main.js adds the FAQPage structured data from this markup automatically once it is visible
-     and no answer still says TODO. -->
-<section class="sec-pad" id="faq" hidden>
+     Answers restate what the rest of the site already says. main.js builds the FAQPage
+     structured data from this markup, so edit questions and answers here only. -->
+<section class="sec-pad" id="faq">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">FAQ</span>
-      <h2 class="h-sec">Questions institutions ask us.</h2>
+      <h2 class="h-sec">Frequently asked questions.</h2>
     </div>
     <div class="faq">
       <details class="faq-item">
         <summary>Can NexusLine run entirely on-premise or air-gapped?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Yes. The same platform runs as managed cloud or entirely inside your own data centre, including air-gapped networks, and the capability set is identical. On-premise installs are updated with versioned images, migrations and an offline bundle, and use offline Ed25519-signed licences with no phone-home. <a href="/deployment">Compare deployment options</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>Which frameworks come preloaded?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Seventeen frameworks with 1,333 clauses, including ISO 27001:2022, NIST CSF 2.0, NIST SP 800-53, PCI DSS 4.0, SOC 2, Basel operational risk, Shariah governance and four SBP packs. Control frameworks bring their controls with them, and crosswalks let one control satisfy requirements across frameworks. <a href="/modules">Browse the module catalogue</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>Does document intelligence send our documents to a third party?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Not unless you configure an external AI API key. Without one, a deterministic on-device engine does the extraction, so no data leaves the building — which is how air-gapped installations use the feature. <a href="/intelligence">How document intelligence works</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>How is our data isolated in the managed cloud?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Each organisation’s data is segregated per tenant and isolated in the database with PostgreSQL row-level security (FORCE RLS), so even a compromised query cannot cross organisational boundaries — it fails closed. Data is encrypted in transit and at rest, and access is governed by SSO, MFA and 96 granular permissions. <a href="/security">Security &amp; audit</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>How long does it take to get started?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Onboarding is five steps: choose your locale, frameworks and modules — pre-selected for your institution type — then invite your team. Managed cloud is the fastest way to launch. For a demo, tell us which frameworks you run and we will load them into a live environment.</p></div>
       </details>
       <details class="faq-item">
         <summary>How is NexusLine priced?</summary>
-        <div class="faq-a"><p>TODO: answer.</p></div>
+        <div class="faq-a"><p>Pricing depends on the editions you choose — each organisation picks which modules its teams see. Managed cloud is a subscription; on-premise uses an offline, signed licence that lists your editions. Email <a href="mailto:info@nexusline.io">info@nexusline.io</a> or <a href="#demo">request a demo</a> for a quote.</p></div>
       </details>
     </div>
   </div>

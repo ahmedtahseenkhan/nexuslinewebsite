@@ -589,6 +589,7 @@ footer{border-top:1px solid var(--line-dark); padding:56px 0 42px; background:#0
 .faq-item summary::after{content:"+"; font-family:var(--mono); font-size:18px; color:var(--accent-deep); flex:0 0 auto;}
 .faq-item[open] summary::after{content:"\2212";}
 .faq-a{padding:0 24px 22px; font-size:15px; color:var(--muted); line-height:1.65; max-width:72ch;}
+.faq-a a{text-decoration:underline; text-underline-offset:2px;}
 
 /* legal pages */
 .prose{max-width:800px;}
