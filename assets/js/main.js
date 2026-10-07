@@ -83,10 +83,43 @@
 
   /* demo request forms — post to FormSubmit, which emails info@nexusline.io.
      Without JS the form still submits normally and FormSubmit shows its own thank-you page. */
+  var formCount = 0;
   document.querySelectorAll('form[data-demo-form]').forEach(function(form){
     var status = form.querySelector('.form-status');
     var btn = form.querySelector('button[type="submit"]');
+    var fields = Array.prototype.slice.call(form.querySelectorAll('label input, label textarea'));
+    var n = ++formCount;
+
+    /* inline validation: JS replaces the browser's tooltips with messages under each field
+       (without JS the browser's built-in required/email checks still apply) */
+    form.setAttribute('novalidate', '');
+    function showError(input){
+      var id = 'err-' + n + '-' + input.name;
+      var err = document.getElementById(id);
+      var msg = input.validity.valueMissing ? 'Please fill in this field.'
+              : input.validity.typeMismatch ? 'Please enter a valid email address, e.g. name@company.com.'
+              : input.validationMessage;
+      if (input.validity.valid){
+        if (err) err.remove();
+        input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby');
+        return true;
+      }
+      if (!err){
+        err = document.createElement('span'); err.className = 'field-error'; err.id = id;
+        input.parentNode.appendChild(err);
+      }
+      err.textContent = msg;
+      input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', id);
+      return false;
+    }
+    fields.forEach(function(input){
+      input.addEventListener('input', function(){ if (input.hasAttribute('aria-invalid')) showError(input); });
+      input.addEventListener('blur', function(){ if (input.value) showError(input); });
+    });
+
     form.addEventListener('submit', function(e){
+      var invalid = fields.filter(function(input){ return !showError(input); });
+      if (invalid.length){ e.preventDefault(); invalid[0].focus(); return; }
       if (!window.fetch || !window.FormData) return;
       e.preventDefault();
       var data = {};
