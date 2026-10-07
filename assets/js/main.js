@@ -135,6 +135,7 @@
           form.reset();
           status.className = 'form-status ok';
           status.textContent = 'Thanks — your request has been sent. We\'ll be in touch shortly.';
+          if (window.nlTrack) window.nlTrack('generate_lead', {form_location: document.body.getAttribute('data-page') || 'home'});
         })
         .catch(function(){
           status.className = 'form-status err';
