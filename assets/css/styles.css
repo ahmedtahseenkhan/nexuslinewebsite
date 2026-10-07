@@ -567,6 +567,7 @@ footer{border-top:1px solid var(--line-dark); padding:56px 0 42px; background:#0
 .contact-form .form-status:empty{display:none;}
 .contact-form .form-status.ok{color:#177a4a;}
 .contact-form .form-status.err{color:#c0392b;}
+.contact-form .form-status a{color:inherit; text-decoration:underline; text-underline-offset:2px; font-weight:600;}
 .contact-form .field-error{font-size:13px; font-weight:500; color:#c0392b;}
 .contact-form [aria-invalid="true"]{border-color:#c0392b;}
 .final-form{position:relative; max-width:560px; margin:40px auto 0; text-align:left; color:var(--text);}

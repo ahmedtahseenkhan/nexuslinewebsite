@@ -229,9 +229,11 @@
           status.textContent = 'Thanks — your request has been sent. We\'ll be in touch shortly.';
           if (window.nlTrack) window.nlTrack('generate_lead', {form_location: document.body.getAttribute('data-page') || 'home'});
         })
-        .catch(function(){
+        .catch(function(err){
+          /* the relay's reason (e.g. an unactivated form) is for us, not the visitor */
+          if (window.console) console.warn('Demo form could not be sent:', err);
           status.className = 'form-status err';
-          status.textContent = 'Something went wrong. Please email info@nexusline.io directly.';
+          status.innerHTML = 'Something went wrong. Please email <a href="mailto:info@nexusline.io">info@nexusline.io</a> directly.';
         })
         .then(function(){ btn.disabled = false; });
     });
