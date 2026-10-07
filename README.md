@@ -32,7 +32,7 @@ removed from the repo on 2026-10-07; recover it with
 │   │   ├── fonts.css      # @font-face — self-hosted Newsreader / IBM Plex Sans / IBM Plex Mono
 │   │   └── styles.css     # design tokens (:root) + all component styles — edit once, restyles every page
 │   ├── js/
-│   │   ├── main.js        # nav, mobile menu, reveal, tabs, count-up, demo forms, FAQ schema, active-nav
+│   │   ├── main.js        # nav, menu, reveal, tabs, demo forms, FAQ schema, active-nav + the components below
 │   │   └── consent.js     # cookie banner + Google Analytics 4 (set GA_ID at the top)
 │   ├── fonts/             # self-hosted .woff2 subsets (privacy / on-prem friendly)
 │   ├── img/               # hero screenshot (+ WebP sizes), hero banner, og-image.jpg (1200x630), app icons
@@ -78,6 +78,25 @@ removed from the repo on 2026-10-07; recover it with
 - `robots.txt`, `sitemap.xml`, `site.webmanifest`, SVG/ICO/PNG icons, `theme-color`.
 - Self-hosted fonts with `font-display:swap` (no third-party requests — good for privacy and for
   the on-prem/air-gapped positioning).
+
+## Components (adapted from Skiper UI)
+
+Animated components from the Skiper UI free set (https://skiper-ui.com, React originals in the separate
+`componets` project) rebuilt in plain CSS/JS so the site keeps no build step. Their licence requires the
+"UI components: Skiper UI" credit in the footer — keep it.
+
+| Component | Skiper UI | Markup hook | Used on |
+|---|---|---|---|
+| Sticky stacked cards | skiper16 | `[data-stack]` › `.stack-card` | home (solution) |
+| Letter scroll reveal | skiper31 | `[data-letter-reveal]` on a heading | home (problem) |
+| Hover-expand strip / accordion | skiper52 | `[data-hover-expand]` › `.hx-panel` | home (domains), platform (records) |
+| Rolling digits | skiper37 | `[data-count]` inside `.statband` | home (stats) |
+| Text-roll nav links | skiper58 | automatic on `.nav-item > a` | every page |
+| Animated underline links | skiper40 | `.more-link`, footer links | every page |
+| Marquee with faded edges | skiper87 | `[data-marquee]` | home (frameworks strip) |
+
+All of them respect `prefers-reduced-motion` and keep their text readable by search engines and screen
+readers (letters are split at runtime, with the full text as the accessible name).
 
 ## Design tokens
 

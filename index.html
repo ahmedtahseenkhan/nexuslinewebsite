@@ -231,18 +231,13 @@
   </div>
 </section>
 
-<!-- trust strip -->
+<!-- trust strip: framework marquee (the second list is a visual duplicate for the loop) -->
 <div class="trust">
   <div class="wrap trust-inner">
     <span class="trust-label">17 frameworks, preloaded</span>
-    <div class="trust-items">
-      <span>ISO 27001:2022</span>
-      <span>NIST CSF 2.0</span>
-      <span>NIST SP 800-53</span>
-      <span>PCI DSS 4.0</span>
-      <span>SOC 2</span>
-      <span>Basel Operational Risk</span>
-      <span>Shariah governance</span>
+    <div class="marquee" data-marquee>
+      <ul class="marquee-track"><li>ISO 27001:2022</li><li>NIST CSF 2.0</li><li>NIST SP 800-53</li><li>PCI DSS 4.0</li><li>SOC 2</li><li>Basel Operational Risk</li><li>Shariah governance</li></ul>
+      <ul class="marquee-track" aria-hidden="true"><li>ISO 27001:2022</li><li>NIST CSF 2.0</li><li>NIST SP 800-53</li><li>PCI DSS 4.0</li><li>SOC 2</li><li>Basel Operational Risk</li><li>Shariah governance</li></ul>
     </div>
   </div>
 </div>
@@ -250,64 +245,68 @@
 <!-- ======================================================= PROBLEM -->
 <section class="sec-pad grain" id="problem">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The problem</span>
-      <h2 class="h-sec">GRC in spreadsheets doesn't survive an audit.</h2>
-      <p class="lede" style="margin-top:18px;">As obligations multiply, the workarounds stop scaling. Findings scatter, evidence goes stale, and every discipline becomes its own island.</p>
-    </div>
-    <div class="grid g-4">
-      <div class="prob-card reveal">
-        <div class="n">01</div>
-        <h3>Obligations tracked in Excel</h3>
-        <p>New regulations are chased manually — no obligation register, no owner, no evidence trail when the examiner asks.</p>
-      </div>
-      <div class="prob-card reveal d1">
-        <div class="n">02</div>
-        <h3>Findings scattered everywhere</h3>
-        <p>Audit, compliance, RCSA and control findings live in six different sheets with no shared lifecycle or follow-up.</p>
-      </div>
-      <div class="prob-card reveal d2">
-        <div class="n">03</div>
-        <h3>Every discipline is a silo</h3>
-        <p>ICFR, BIA, fraud, model risk, outsourcing — separate tools or no tool at all, none of them talking to each other.</p>
-      </div>
-      <div class="prob-card reveal d3">
-        <div class="n">04</div>
-        <h3>Global suites don't fit</h3>
-        <p>Legacy platforms are priced, hosted and built for a different scale — heavy to deploy, and blind to local regulation.</p>
-      </div>
-    </div>
-    <p class="prob-foot reveal">The result: a compliance function that spends its time <b>assembling evidence</b> instead of managing risk — and can't move fast when the rules change.</p>
+    <span class="eyebrow center reveal">The problem</span>
+    <h2 class="statement" data-letter-reveal>GRC in spreadsheets doesn't survive an audit.</h2>
+    <ol class="pains">
+      <li class="pain reveal"><span class="n">01</span><h3>Obligations tracked in Excel</h3><p>No obligation register, no owner, no evidence trail.</p></li>
+      <li class="pain reveal d1"><span class="n">02</span><h3>Findings scattered everywhere</h3><p>Audit, compliance and RCSA findings in six different sheets.</p></li>
+      <li class="pain reveal d2"><span class="n">03</span><h3>Every discipline is a silo</h3><p>ICFR, BIA, fraud, model risk — separate tools, or none at all.</p></li>
+      <li class="pain reveal d3"><span class="n">04</span><h3>Global suites don't fit</h3><p>Priced, hosted and built for a different scale.</p></li>
+    </ol>
+    <p class="prob-foot center reveal">The result: a compliance function that spends its time <b>assembling evidence</b> instead of managing risk.</p>
   </div>
 </section>
 
-<!-- ======================================================= SOLUTION (dark) -->
-<section class="sec-pad dark" id="solution" style="background:linear-gradient(180deg, var(--ink), var(--ink-2));">
+<!-- ======================================================= SOLUTION: sticky stacked cards -->
+<section class="sec-pad" id="solution" style="background:var(--paper-2);">
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow center">The solution</span>
       <h2 class="h-sec">One platform. Every discipline. Your infrastructure.</h2>
-      <p class="lede" style="margin-top:18px;">Risk → compliance → governance → audit → continuity, connected. What you record once is reused everywhere it's needed.</p>
     </div>
-    <div class="grid g-3">
-      <div class="card reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"></path><circle cx="19" cy="17" r="2.4"></circle></svg></div>
-        <span class="cnum">01 — UNIFY</span>
-        <h3 class="lg">Everything in one register set</h3>
-        <p>Findings, controls, assets and evidence live once and are reused across risk, compliance, audit and continuity. A single connected issue register is the connective tissue point tools never build.</p>
-      </div>
-      <div class="card reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z" stroke-linejoin="round"></path></svg></div>
-        <span class="cnum">02 — COMPLY</span>
-        <h3 class="lg">Comply once, report many</h3>
-        <p>Map one control to many requirements, accept suggested clauses and cross-framework crosswalks, and export a Statement of Applicability. Seventeen frameworks and 1,333 clauses preloaded.</p>
-      </div>
-      <div class="card reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"></path></svg></div>
-        <span class="cnum">03 — OWN YOUR DATA</span>
-        <h3 class="lg">SaaS or fully on-premise</h3>
-        <p>Run it as managed cloud, or deploy the entire stack inside your data centre — air-gapped, offline-licensed, with database-level tenant isolation that fails closed, never open.</p>
-      </div>
+    <div class="stack" data-stack>
+      <article class="stack-card sc-light">
+        <div class="stack-copy">
+          <span class="cnum">01 — Unify</span>
+          <h3>Everything in one register set</h3>
+          <p>Findings, controls, assets and evidence live once and are reused across risk, compliance, audit and continuity.</p>
+        </div>
+        <div class="stack-viz viz-hub" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M200 150 L200 40 M200 150 L355 150 M200 150 L200 260 M200 150 L45 150"/></svg>
+          <span class="node hub" style="left:50%;top:50%">Issue register</span>
+          <span class="node" style="left:50%;top:13%">Risks</span>
+          <span class="node" style="left:86%;top:50%">Controls</span>
+          <span class="node" style="left:50%;top:87%">Evidence</span>
+          <span class="node" style="left:14%;top:50%">Audit</span>
+        </div>
+      </article>
+      <article class="stack-card sc-ink">
+        <div class="stack-copy">
+          <span class="cnum">02 — Comply</span>
+          <h3>Comply once, report many</h3>
+          <p>Map one control to many requirements, accept suggested crosswalks, and export a Statement of Applicability.</p>
+        </div>
+        <div class="stack-viz viz-map" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M120 150 C200 150 200 45 290 45 M120 150 C200 150 200 115 290 115 M120 150 C200 150 200 185 290 185 M120 150 C200 150 200 255 290 255"/></svg>
+          <span class="node hub" style="left:18%;top:50%">1 control</span>
+          <span class="node" style="left:80%;top:15%">ISO 27001</span>
+          <span class="node" style="left:80%;top:38%">NIST CSF</span>
+          <span class="node" style="left:80%;top:62%">PCI DSS</span>
+          <span class="node" style="left:80%;top:85%">SOC 2</span>
+        </div>
+      </article>
+      <article class="stack-card sc-accent">
+        <div class="stack-copy">
+          <span class="cnum">03 — Own your data</span>
+          <h3>SaaS or fully on-premise</h3>
+          <p>Run it as managed cloud, or deploy the entire stack inside your data centre — air-gapped and offline-licensed.</p>
+        </div>
+        <div class="stack-viz viz-modes" aria-hidden="true">
+          <span class="mode"><svg viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 9.1 4.5 4.5 0 0 0 7 18z"/></svg>Managed cloud</span>
+          <span class="mode"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="6" rx="1.5"/><rect x="4" y="14" width="16" height="6" rx="1.5"/><path d="M8 7h.01M8 17h.01"/></svg>Your data centre</span>
+          <span class="mode"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Air-gapped</span>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -375,130 +374,65 @@
   </div>
 </section>
 
-<!-- ======================================================= MODULE MAP -->
+<!-- ======================================================= MODULE MAP: hover-expand domain strip -->
 <section class="sec-pad grain" id="modules">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Platform at a glance</span>
-      <h2 class="h-sec">64 modules across 11 domains.</h2>
-      <p class="lede" style="margin-top:18px;">The breadth of a mature GRC suite — with the lifecycle depth to actually run each discipline, not just log it.</p>
+    <div class="sec-head sec-head-row reveal">
+      <div>
+        <span class="eyebrow">Platform at a glance</span>
+        <h2 class="h-sec">64 modules across 11 domains.</h2>
+      </div>
+      <a class="more-link" href="/modules">Browse the full catalogue <span class="arr">&#8594;</span></a>
     </div>
-    <div class="domain-map">
-      <div class="dom reveal">
-        <div class="dom-head"><h3>Programme</h3><span class="ct">08</span></div>
-        <ul><li>My Work</li><li>Dashboard &amp; Health Score</li><li>Reports &amp; KPIs</li><li>Report Builder</li><li>Strategy &amp; Goals</li><li>Projects</li><li>Approvals</li><li>AI Assist</li></ul>
+    <div class="hx reveal" data-hover-expand>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">08</span><span class="hx-name">Programme</span></button></h3>
+        <ul class="hx-body"><li>My Work</li><li>Dashboard &amp; Health Score</li><li>Reports &amp; KPIs</li><li>Report Builder</li><li>Strategy &amp; Goals</li><li>Projects</li><li>Approvals</li><li>AI Assist</li></ul>
       </div>
-      <div class="dom reveal d1">
-        <div class="dom-head"><h3>Risk Management</h3><span class="ct">08</span></div>
-        <ul><li>Risk Register &amp; Appetite</li><li>Risk Candidates</li><li>Operational Risk (RCSA, KRI)</li><li>Scenario &amp; Capital</li><li>Model Risk</li><li>Risk Quantification</li><li>Threat Library</li><li>Risk Exceptions</li></ul>
+      <div class="hx-panel is-active">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="true"><span class="hx-ct">08</span><span class="hx-name">Risk Management</span></button></h3>
+        <ul class="hx-body"><li>Risk Register &amp; Appetite</li><li>Risk Candidates</li><li>Operational Risk (RCSA, KRI)</li><li>Scenario &amp; Capital</li><li>Model Risk</li><li>Risk Quantification</li><li>Threat Library</li><li>Risk Exceptions</li></ul>
       </div>
-      <div class="dom reveal d2">
-        <div class="dom-head"><h3>Compliance</h3><span class="ct">06</span></div>
-        <ul><li>Compliance Management</li><li>Framework Library</li><li>Regulatory Change</li><li>ICFR</li><li>Declarations</li><li>ESG / Green Banking</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">06</span><span class="hx-name">Compliance</span></button></h3>
+        <ul class="hx-body"><li>Compliance Management</li><li>Framework Library</li><li>Regulatory Change</li><li>ICFR</li><li>Declarations</li><li>ESG / Green Banking</li></ul>
       </div>
-      <div class="dom reveal d3">
-        <div class="dom-head"><h3>Governance</h3><span class="ct">07</span></div>
-        <ul><li>Business Units</li><li>Processes</li><li>Legal Register</li><li>Board &amp; Committees</li><li>Policy Management</li><li>Delegation of Authority</li><li>Users &amp; Roles</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">07</span><span class="hx-name">Governance</span></button></h3>
+        <ul class="hx-body"><li>Business Units</li><li>Processes</li><li>Legal Register</li><li>Board &amp; Committees</li><li>Policy Management</li><li>Delegation of Authority</li><li>Users &amp; Roles</li></ul>
       </div>
-      <div class="dom reveal">
-        <div class="dom-head"><h3>Security Operations</h3><span class="ct">06</span></div>
-        <ul><li>Incidents</li><li>Vulnerabilities</li><li>Business Continuity</li><li>Business Impact Analysis</li><li>Access Reviews</li><li>Issues &amp; Actions</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">06</span><span class="hx-name">Security Operations</span></button></h3>
+        <ul class="hx-body"><li>Incidents</li><li>Vulnerabilities</li><li>Business Continuity</li><li>Business Impact Analysis</li><li>Access Reviews</li><li>Issues &amp; Actions</li></ul>
       </div>
-      <div class="dom reveal d1">
-        <div class="dom-head"><h3>Controls &amp; Assurance</h3><span class="ct">04</span></div>
-        <ul><li>Control Catalogue</li><li>Evidence</li><li>Awareness Training</li><li>Internal Audit</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">04</span><span class="hx-name">Controls &amp; Assurance</span></button></h3>
+        <ul class="hx-body"><li>Control Catalogue</li><li>Evidence</li><li>Awareness Training</li><li>Internal Audit</li></ul>
       </div>
-      <div class="dom reveal d2">
-        <div class="dom-head"><h3>Asset Management</h3><span class="ct">04</span></div>
-        <ul><li>Information Assets</li><li>IT Assets</li><li>Data Privacy (RoPA)</li><li>Data Protection</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">04</span><span class="hx-name">Asset Management</span></button></h3>
+        <ul class="hx-body"><li>Information Assets</li><li>IT Assets</li><li>Data Privacy (RoPA)</li><li>Data Protection</li></ul>
       </div>
-      <div class="dom reveal d3">
-        <div class="dom-head"><h3>Third-Party Risk</h3><span class="ct">04</span></div>
-        <ul><li>Third Parties</li><li>Outsourcing &amp; Cloud</li><li>Vendor Assessments</li><li>Questionnaires</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">04</span><span class="hx-name">Third-Party Risk</span></button></h3>
+        <ul class="hx-body"><li>Third Parties</li><li>Outsourcing &amp; Cloud</li><li>Vendor Assessments</li><li>Questionnaires</li></ul>
       </div>
-      <div class="dom reveal">
-        <div class="dom-head"><h3>Financial Crime</h3><span class="ct">03</span></div>
-        <ul><li>AML / CFT</li><li>Fraud Risk</li><li>Whistleblowing</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">03</span><span class="hx-name">Financial Crime</span></button></h3>
+        <ul class="hx-body"><li>AML / CFT</li><li>Fraud Risk</li><li>Whistleblowing</li></ul>
       </div>
-      <div class="dom reveal d1">
-        <div class="dom-head"><h3>Islamic Banking</h3><span class="ct">01</span></div>
-        <ul><li>Shariah Governance</li></ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">01</span><span class="hx-name">Islamic Banking</span></button></h3>
+        <ul class="hx-body"><li>Shariah Governance</li></ul>
       </div>
-      <div class="dom wide reveal d2">
-        <div class="dom-head"><h3>Administration</h3><span class="ct">13</span></div>
-        <ul><li>General Settings</li><li>Organisation Settings</li><li>Integrations &amp; CCM</li><li>Custom Fields</li><li>Lookups &amp; Dropdowns</li><li>Status Rules</li><li>Turnaround Time (TAT)</li><li>Approval Workflows</li><li>Saved Filters</li><li>Import / Export</li><li>Webhooks</li><li>Single Sign-On</li><li>Activity Log</li></ul>
-      </div>
-      <div class="dom connected full reveal">
-        <div class="dom-head"><h3>Connected</h3><span class="ct">↔</span></div>
-        <ul>
-          <li>Shared issue &amp; action register</li>
-          <li>Evidence collected once, reused</li>
-          <li>Crosswalks across frameworks</li>
-          <li>Every count drills to its list</li>
-          <li>Append-only audit trail</li>
-        </ul>
+      <div class="hx-panel">
+        <h3 class="hx-h"><button type="button" class="hx-btn" aria-expanded="false"><span class="hx-ct">13</span><span class="hx-name">Administration</span></button></h3>
+        <ul class="hx-body"><li>General Settings</li><li>Organisation Settings</li><li>Integrations &amp; CCM</li><li>Custom Fields</li><li>Lookups &amp; Dropdowns</li><li>Status Rules</li><li>Turnaround Time (TAT)</li><li>Approval Workflows</li><li>Saved Filters</li><li>Import / Export</li><li>Webhooks</li><li>Single Sign-On</li><li>Activity Log</li></ul>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ======================================================= DOMAIN DEEP DIVE (tabs) -->
-<section class="sec-pad" id="capabilities" style="background:var(--paper-2);">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Capability, in depth</span>
-      <h2 class="h-sec">Not a form builder. A real lifecycle for every discipline.</h2>
-    </div>
-    <div class="tabs reveal" role="tablist" aria-label="Capability domains">
-      <button class="tab on" data-tab="risk" role="tab" id="tab-btn-risk" aria-controls="tab-risk" aria-selected="true">Risk</button>
-      <button class="tab" data-tab="compliance" role="tab" id="tab-btn-compliance" aria-controls="tab-compliance" tabindex="-1" aria-selected="false">Compliance &amp; Assurance</button>
-      <button class="tab" data-tab="governance" role="tab" id="tab-btn-governance" aria-controls="tab-governance" tabindex="-1" aria-selected="false">Governance &amp; Board</button>
-      <button class="tab" data-tab="operations" role="tab" id="tab-btn-operations" aria-controls="tab-operations" tabindex="-1" aria-selected="false">Operations &amp; Continuity</button>
-    </div>
-
-    <div class="tabpanel on" id="tab-risk" role="tabpanel" aria-labelledby="tab-btn-risk" tabindex="0">
-      <div class="grid g-3">
-        <div class="card"><span class="tagk">Risk Register</span><h3>A statement, not a title</h3><p>Cause, event and consequence; impact scored per dimension; inherent → residual → target on your own matrix; appetite per risk category. Every score change carries a written rationale.</p></div>
-        <div class="card"><span class="tagk">Operational Risk</span><h3>Full Basel toolkit</h3><p>RCSA campaigns, KRIs with defined formulas, amber/red escalation to a named owner and live data feeds, and the loss database — mapped to the seven Basel event types.</p></div>
-        <div class="card"><span class="tagk">Scenario &amp; Capital</span><h3>Basel III SMA capital</h3><p>Structured scenario workshops feeding a Standardised-Approach operational-risk capital calculation — the fourth leg of Basel ORM, computed for you.</p></div>
-        <div class="card"><span class="tagk">Risk Quantification</span><h3>Monte Carlo simulation</h3><p>Ten-thousand-iteration simulations turning a scenario into a P10 / P50 / P90 loss-exposure curve. Boards understand money, not colours.</p></div>
-        <div class="card"><span class="tagk">Model Risk</span><h3>SR 11-7 validation</h3><p>Inventory and independent-validation lifecycle for IFRS 9 ECL, credit-scoring, AML and AI/ML models — with materiality and overdue-validation tracking.</p></div>
-        <div class="card"><span class="tagk">Risk Candidates</span><h3>From assets to a hierarchy</h3><p>Generate risks from your asset register into a review queue — forty servers running Payments become one candidate, not forty risks — then roll them up enterprise → category → scenario.</p></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="tab-compliance" role="tabpanel" aria-labelledby="tab-btn-compliance" tabindex="0">
-      <div class="grid g-3">
-        <div class="card"><span class="tagk">Framework Library</span><h3>Seventeen standards, one click</h3><p>ISO 27001, NIST CSF 2.0 and SP 800-53, PCI DSS 4.0, SOC 2, Basel, Shariah and four SBP packs — 1,333 clauses, and control frameworks bring their controls with them.</p></div>
-        <div class="card"><span class="tagk">Compliance</span><h3>Map once, prove everywhere</h3><p>Suggested clauses for the controls you wrote, crosswalk suggestions between frameworks, and a Statement of Applicability exported to XLSX or PDF.</p></div>
-        <div class="card"><span class="tagk">ICFR</span><h3>The annual cycle</h3><p>Process universe → risk-control matrix → design &amp; operating tests → deficiency evaluation, from simple deficiency to material weakness.</p></div>
-        <div class="card"><span class="tagk">Internal Audit</span><h3>Universe to follow-up</h3><p>Risk-based audit universe, engagements, working-paper procedures and findings — tracked enterprise-wide until every one is closed.</p></div>
-        <div class="card"><span class="tagk">Control Testing</span><h3>Tested, reviewed, proven</h3><p>A workpaper per test — period, sample, exceptions, conclusion, evidence — approved by a second person before it moves effectiveness. A failed test opens an issue by itself.</p></div>
-        <div class="card"><span class="tagk">Continuous Monitoring</span><h3>Your tools feed the proof</h3><p>SIEMs, identity platforms and scripts post control-check results; each lands as evidence and a test run, and a failure raises an alert — never a rating on its own.</p></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="tab-governance" role="tabpanel" aria-labelledby="tab-btn-governance" tabindex="0">
-      <div class="grid g-3">
-        <div class="card"><span class="tagk">Policy Management</span><h3>Draft to acknowledgment</h3><p>Draft, review, approve, publish — four-eyes at each step — with the approving committee, periodic reviews and acknowledgement tracked by role.</p></div>
-        <div class="card"><span class="tagk">Board &amp; Committees</span><h3>Meetings to board packs</h3><p>Committees, meetings and decisions — and a board pack (PDF and spreadsheet) generated from the live register, automatically before each meeting.</p></div>
-        <div class="card"><span class="tagk">Whistleblowing</span><h3>Confidential intake</h3><p>Anonymous disclosure intake with tokenised case references, triage and investigation case files through to a substantiated outcome.</p></div>
-        <div class="card"><span class="tagk">Declarations</span><h3>Conflicts &amp; conduct</h3><p>Periodic conflict-of-interest, gifts, personal-account-dealing and outside-employment declaration campaigns with reviewer sign-off.</p></div>
-        <div class="card"><span class="tagk">Delegation of Authority</span><h3>Authority matrix</h3><p>A documented delegation-of-authority matrix and dual-control rules — who may approve what, by role and amount band.</p></div>
-        <div class="card"><span class="tagk">ESG</span><h3>Green Banking</h3><p>Green Banking Guideline tracking and environmental risk ratings for credit and vendor exposures.</p></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="tab-operations" role="tabpanel" aria-labelledby="tab-btn-operations" tabindex="0">
-      <div class="grid g-3">
-        <div class="card"><span class="tagk">Incidents</span><h3>Detection to closure</h3><p>Severity, a minute-level timeline, MTTD/MTTR and links to the risks, assets and controls involved — with the regulator’s notification deadline counting down.</p></div>
-        <div class="card"><span class="tagk">Business Continuity</span><h3>Plans &amp; exercises</h3><p>Continuity plans with a recurring exercise calendar and tested recovery strategies — sign-off tracked, never assumed.</p></div>
-        <div class="card"><span class="tagk">Business Impact Analysis</span><h3>RTO / RPO / MTPD</h3><p>Structured BIA capturing recovery objectives and single points of failure, feeding directly into continuity plans.</p></div>
-        <div class="card"><span class="tagk">Issues &amp; Actions</span><h3>One CAPA register</h3><p>Every finding from every module lands in one shared issue register with owners, due dates and a common lifecycle to closure.</p></div>
-        <div class="card"><span class="tagk">Vulnerabilities</span><h3>Findings to patch</h3><p>Scanner findings with severity-driven remediation SLAs (critical in 7 days) and a patch-deployment pipeline through to deployed.</p></div>
-        <div class="card"><span class="tagk">Approvals</span><h3>Enforced four-eyes</h3><p>Maker-checker where the requester can never approve their own request, each checker votes once, and every rejection carries a reason — decided in the app or from the inbox.</p></div>
-      </div>
-    </div>
+    <ul class="chips reveal" aria-label="Connected across every domain">
+      <li class="chips-label">Connected</li><li>Shared issue &amp; action register</li><li>Evidence collected once, reused</li><li>Crosswalks across frameworks</li><li>Every count drills to its list</li><li>Append-only audit trail</li>
+    </ul>
   </div>
 </section>
 
@@ -541,79 +475,60 @@
   </div>
 </section>
 
-<!-- ======================================================= SECURITY (light) -->
+<!-- ======================================================= SECURITY (compact; detail on /security) -->
 <section class="sec-pad" id="security" style="background:var(--paper-2);">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Built for regulated institutions</span>
-      <h2 class="h-sec">Passes the IT audit on day one.</h2>
-      <p class="lede" style="margin-top:18px;">Security isn't a feature flag — it's the foundation. Isolation, access control and an unbroken audit trail are enforced at the layer that matters.</p>
+    <div class="sec-head sec-head-row reveal">
+      <div>
+        <span class="eyebrow">Built for regulated institutions</span>
+        <h2 class="h-sec">Passes the IT audit on day one.</h2>
+      </div>
+      <a class="more-link" href="/security">Security &amp; audit in detail <span class="arr">&#8594;</span></a>
     </div>
-    <div class="grid g-3">
-      <div class="sec-item reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-        <span class="tagk">Tenant isolation</span><h3>Enforced at the database</h3>
-        <p>PostgreSQL row-level security with FORCE RLS — even a compromised query cannot cross organizational boundaries. Fails closed, never open.</p>
-      </div>
-      <div class="sec-item reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke-linecap="round"></path></svg></div>
-        <span class="tagk">RBAC</span><h3>96 permissions, 6 roles</h3>
-        <p>Granular resource:action permissions, six built-in roles plus custom roles — splitting “can edit” from “can test” and “can approve” where it matters.</p>
-      </div>
-      <div class="sec-item reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16" cy="16" r="3"></circle><path d="M11 8h4M8 11v3" stroke-linecap="round"></path></svg></div>
-        <span class="tagk">Four-eyes</span><h3>The maker never checks</h3>
-        <p>Enforced on approvals, record sign-off, deletions, control-test review, issue closure and attestation — and tunable per action as maker-checker rules.</p>
-      </div>
-      <div class="sec-item reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"></path><circle cx="12" cy="15" r="1.3"></circle></svg></div>
-        <span class="tagk">Identity</span><h3>MFA · SSO · LDAP</h3>
-        <p>Two-factor enforced for administrators and approvers, password policy and lockout, plus OIDC single sign-on and Active Directory with just-in-time provisioning.</p>
-      </div>
-      <div class="sec-item reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"></path><circle cx="19" cy="18" r="1.6"></circle></svg></div>
-        <span class="tagk">Audit trail</span><h3>Everything, logged</h3>
-        <p>An append-only log of every create, update, decision and closure. Deleted records are archived and restorable, and a delete shows what it would unlink first.</p>
-      </div>
-      <div class="sec-item reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" stroke-linejoin="round"></path><path d="M12 8v4l2 2" stroke-linecap="round"></path></svg></div>
-        <span class="tagk">Licensing</span><h3>Offline, no phone-home</h3>
-        <p>Ed25519-signed offline licences and a least-privilege runtime database role — designed for air-gapped bank environments.</p>
-      </div>
+    <div class="sec-mini">
+      <div class="sm-item reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><span class="tagk">Tenant isolation</span><h3>Enforced at the database</h3></div></div>
+      <div class="sm-item reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke-linecap="round"></path></svg></div><div><span class="tagk">RBAC</span><h3>96 permissions, 6 roles</h3></div></div>
+      <div class="sm-item reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16" cy="16" r="3"></circle><path d="M11 8h4M8 11v3" stroke-linecap="round"></path></svg></div><div><span class="tagk">Four-eyes</span><h3>The maker never checks</h3></div></div>
+      <div class="sm-item reveal"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"></path><circle cx="12" cy="15" r="1.3"></circle></svg></div><div><span class="tagk">Identity</span><h3>MFA · SSO · LDAP</h3></div></div>
+      <div class="sm-item reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"></path><circle cx="19" cy="18" r="1.6"></circle></svg></div><div><span class="tagk">Audit trail</span><h3>Everything, logged</h3></div></div>
+      <div class="sm-item reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" stroke-linejoin="round"></path><path d="M12 8v4l2 2" stroke-linecap="round"></path></svg></div><div><span class="tagk">Licensing</span><h3>Offline, no phone-home</h3></div></div>
     </div>
   </div>
 </section>
 
-<!-- ======================================================= DEPLOYMENT -->
+<!-- ======================================================= DEPLOYMENT (two-card comparison; full table on /deployment) -->
 <section class="sec-pad grain" id="deployment">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Deployment</span>
-      <h2 class="h-sec">Managed cloud, or entirely your own.</h2>
-      <p class="lede" style="margin-top:18px;">The same platform, two operating models. Choose speed, or choose data sovereignty — the capability set is identical.</p>
-    </div>
-    <div class="deploy-tbl reveal">
-      <div class="deploy-scroll">
-        <table class="deploy">
-          <thead>
-            <tr>
-              <th class="rowh"></th>
-              <th>SaaS<span class="sub">Managed cloud</span></th>
-              <th class="col-onprem">On-Premise<span class="sub">Your data centre</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th class="rowh">Hosting</th><td>We operate it — fastest to launch</td><td class="col-onprem"><b>Inside your data centre</b>, air-gapped capable</td></tr>
-            <tr><th class="rowh">Data residency</th><td>Segregated per-tenant</td><td class="col-onprem"><b>Never leaves the bank</b></td></tr>
-            <tr><th class="rowh">Tenant isolation</th><td>Database-level RLS</td><td class="col-onprem">Database-level RLS</td></tr>
-            <tr><th class="rowh">Updates</th><td>Continuous, managed</td><td class="col-onprem">Versioned images + migrations · offline bundle</td></tr>
-            <tr><th class="rowh">Licensing</th><td>Subscription</td><td class="col-onprem">Offline Ed25519, no phone-home</td></tr>
-            <tr><th class="rowh">Modules</th><td>Editions per subscription — each organisation picks what its teams see</td><td class="col-onprem">Editions listed in the signed licence — each organisation picks what its teams see</td></tr>
-            <tr><th class="rowh">Best for</th><td>Speed &amp; low ops overhead</td><td class="col-onprem"><b>Data-sovereignty mandates</b></td></tr>
-          </tbody>
-        </table>
+    <div class="sec-head sec-head-row reveal">
+      <div>
+        <span class="eyebrow">Deployment</span>
+        <h2 class="h-sec">Managed cloud, or entirely your own.</h2>
       </div>
+      <a class="more-link" href="/deployment">Compare deployment options <span class="arr">&#8594;</span></a>
     </div>
+    <div class="duo">
+      <article class="duo-card reveal">
+        <span class="tagk">SaaS · Managed cloud</span>
+        <h3>Speed &amp; low ops overhead</h3>
+        <ul class="ticks">
+          <li>We operate it — fastest to launch</li>
+          <li>Segregated per-tenant data</li>
+          <li>Continuous, managed updates</li>
+          <li>Subscription licensing</li>
+        </ul>
+      </article>
+      <article class="duo-card duo-dark reveal d1">
+        <span class="tagk">On-premise · Your data centre</span>
+        <h3>Data-sovereignty mandates</h3>
+        <ul class="ticks">
+          <li>Inside your data centre, air-gapped capable</li>
+          <li>Data never leaves the bank</li>
+          <li>Versioned images, migrations and an offline bundle</li>
+          <li>Offline Ed25519 licence, no phone-home</li>
+        </ul>
+      </article>
+    </div>
+    <p class="duo-note reveal">Same capability set and database-level tenant isolation in both.</p>
   </div>
 </section>
 
@@ -735,6 +650,7 @@
         <div class="r">
           <span>SaaS &amp; On-premise</span>
           <span>Air-gapped capable</span>
+          <a href="https://skiper-ui.com" rel="noopener">UI components: Skiper UI</a>
         </div>
       </div>
     </div>

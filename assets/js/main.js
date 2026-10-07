@@ -1,5 +1,7 @@
 /* NexusLine GRC — site interactions
-   Nav scroll state, mobile menu, reveal-on-scroll, domain tabs, count-up stats.
+   Nav scroll state, mobile menu, reveal-on-scroll, domain tabs, rolling stats, demo forms, and the
+   components adapted from Skiper UI (skiper-ui.com): text-roll nav, letter reveal, sticky stacked
+   cards, hover-expand strip.
    Loaded with `defer` on every page; all handlers no-op safely if their elements are absent. */
 (function(){
 
@@ -55,31 +57,121 @@
     });
   });
 
-  /* count-up stats */
-  var counted = false;
+  /* one rAF-throttled scroll/resize loop shared by the scroll-driven components below */
+  var scrollers = [], ticking = false;
+  function onFrame(){ ticking = false; scrollers.forEach(function(fn){ fn(); }); }
+  function requestFrame(){ if (!ticking){ ticking = true; requestAnimationFrame(onFrame); } }
+  function onScrollFrame(fn){
+    if (!scrollers.length){
+      window.addEventListener('scroll', requestFrame, {passive:true});
+      window.addEventListener('resize', requestFrame);
+    }
+    scrollers.push(fn); fn();
+  }
+  function clamp01(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function letters(text, cls){
+    return text.split('').map(function(c){ return '<span class="' + cls + '">' + (c === ' ' ? '&nbsp;' : c) + '</span>'; }).join('');
+  }
+
+  /* stats — rolling digits (Skiper UI skiper37 / NumberFlow). Each digit is a 0-9 column that slides
+     to its value when the band scrolls into view; screen readers get the plain number. */
   var band = document.querySelector('.statband');
-  function runCount(){
-    if (counted) return; counted = true;
-    document.querySelectorAll('[data-count]').forEach(function(el){
-      var target = parseInt(el.getAttribute('data-count'), 10);
-      if (reduce){ el.textContent = target.toLocaleString('en-US'); return; }
-      var start = null, dur = 1100;
-      function step(ts){
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased).toLocaleString('en-US');
-        if (p < 1) requestAnimationFrame(step); else el.textContent = target.toLocaleString('en-US');
-      }
-      requestAnimationFrame(step);
+  var odos = Array.prototype.slice.call(document.querySelectorAll('[data-count]')).map(function(el){
+    var text = parseInt(el.getAttribute('data-count'), 10).toLocaleString('en-US');
+    if (reduce) { el.textContent = text; return null; }
+    var cols = [], html = '';
+    text.split('').forEach(function(c, i){
+      if (/\d/.test(c)) {
+        html += '<span class="odo-col" style="--d:' + (i * 90) + 'ms">';
+        for (var d = 0; d <= 9; d++) html += '<span>' + d + '</span>';
+        html += '</span>';
+        cols.push(+c);
+      } else html += '<span class="odo-sep">' + c + '</span>';
+    });
+    el.innerHTML = '<span class="sr-only">' + text + '</span><span class="odo" aria-hidden="true">' + html + '</span>';
+    return {el: el, digits: cols};
+  }).filter(Boolean);
+  function rollStats(){
+    odos.forEach(function(o){
+      o.el.querySelectorAll('.odo-col').forEach(function(col, i){ col.style.transform = 'translateY(' + (-o.digits[i]) + 'em)'; });
     });
   }
-  if (band && 'IntersectionObserver' in window && !reduce){
-    var io2 = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting){ runCount(); io2.disconnect(); } });
-    }, {threshold:0.4});
-    io2.observe(band);
-  } else { runCount(); }
+  if (odos.length) {
+    if (band && 'IntersectionObserver' in window) {
+      var io2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting){ rollStats(); io2.disconnect(); } });
+      }, {threshold:0.4});
+      io2.observe(band);
+    } else rollStats();
+  }
+
+  /* text-roll nav links (Skiper UI skiper58): letters roll up on hover, staggered from the centre */
+  if (!reduce) document.querySelectorAll('.nav-item > a').forEach(function(a){
+    var node = Array.prototype.find.call(a.childNodes, function(n){ return n.nodeType === 3 && n.textContent.trim(); });
+    if (!node) return;
+    var label = node.textContent.trim(), mid = (label.length - 1) / 2;
+    var roll = document.createElement('span');
+    roll.className = 'roll'; roll.setAttribute('aria-hidden', 'true');
+    roll.innerHTML = letters(label, 'ch');
+    Array.prototype.forEach.call(roll.children, function(ch, i){ ch.style.setProperty('--d', Math.round(Math.abs(i - mid) * 30) + 'ms'); });
+    var sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = label;
+    a.replaceChild(roll, node); a.insertBefore(sr, roll);
+  });
+
+  /* letter reveal (Skiper UI skiper31): the statement's letters gather from the centre as it scrolls
+     into view. The heading keeps its full text as the accessible name. */
+  if (!reduce) document.querySelectorAll('[data-letter-reveal]').forEach(function(h){
+    var text = h.textContent.trim();
+    h.setAttribute('aria-label', text);
+    h.innerHTML = text.split(' ').map(function(w){ return '<span class="w" aria-hidden="true">' + letters(w, 'ch') + '</span>'; }).join(' ');
+    var chs = Array.prototype.slice.call(h.querySelectorAll('.ch'));
+    var mid = (chs.length - 1) / 2;
+    onScrollFrame(function(){
+      var r = h.getBoundingClientRect(), vh = window.innerHeight;
+      var p = clamp01((vh - r.top) / (vh * 0.62));
+      var k = 1 - (1 - Math.pow(1 - p, 3));               /* remaining distance, eased */
+      chs.forEach(function(c, i){
+        var d = i - mid;
+        c.style.transform = k ? 'translateX(' + (d * 16 * k).toFixed(1) + 'px) rotateX(' + (d * 7 * k).toFixed(1) + 'deg)' : '';
+        c.style.opacity = (0.12 + 0.88 * (1 - k)).toFixed(3);
+      });
+    });
+  });
+
+  /* sticky stacked cards (Skiper UI skiper16): cards pin under the nav one over another; each one
+     shrinks a little as the cards after it arrive */
+  if (!reduce) document.querySelectorAll('[data-stack]').forEach(function(stack){
+    var cards = Array.prototype.slice.call(stack.querySelectorAll('.stack-card')), n = cards.length;
+    onScrollFrame(function(){
+      var r = stack.getBoundingClientRect(), vh = window.innerHeight;
+      var p = clamp01(-r.top / Math.max(1, r.height - vh * 0.6));
+      cards.forEach(function(c, i){
+        var start = i / n, target = 1 - (n - 1 - i) * 0.05;
+        var t = clamp01((p - start) / (1 - start));
+        c.style.transform = 'scale(' + (1 + (target - 1) * t).toFixed(4) + ')';
+      });
+    });
+  });
+
+  /* hover-expand strip (Skiper UI skiper52): one panel open at a time — hover, focus or click opens it.
+     Below 900px the strip becomes an accordion, so only click/tap toggles. */
+  document.querySelectorAll('[data-hover-expand]').forEach(function(hx){
+    var panels = Array.prototype.slice.call(hx.querySelectorAll('.hx-panel'));
+    var wide = window.matchMedia('(min-width: 901px)');
+    function open(panel){
+      panels.forEach(function(p){
+        var on = p === panel;
+        p.classList.toggle('is-active', on);
+        p.querySelector('.hx-btn').setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+    }
+    panels.forEach(function(p){
+      var btn = p.querySelector('.hx-btn');
+      btn.addEventListener('click', function(){ open(p); });
+      btn.addEventListener('focus', function(){ if (wide.matches) open(p); });
+      p.addEventListener('pointerenter', function(e){ if (wide.matches && e.pointerType === 'mouse') open(p); });
+    });
+  });
 
   /* demo request forms — post to FormSubmit, which emails info@nexusline.io.
      Without JS the form still submits normally and FormSubmit shows its own thank-you page. */
