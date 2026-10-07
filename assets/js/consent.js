@@ -6,9 +6,9 @@
 
   "use strict";
 
-  /* TODO: paste the GA4 Measurement ID (GA4 → Admin → Data streams → Web), e.g. 'G-ABC123XYZ9'.
-     While this is empty no banner is shown and nothing is tracked. */
-  var GA_ID = '';
+  /* GA4 Measurement ID (GA4 → Admin → Data streams → Web).
+     Emptying it switches off the banner and all tracking. */
+  var GA_ID = 'G-HKDGD6NVZC';
 
   var KEY = 'nl-consent', MAX_AGE = 365 * 24 * 3600 * 1000;
   var loaded = false;
