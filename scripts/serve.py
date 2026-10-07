@@ -8,10 +8,12 @@ Behaves like production so you can test before pushing:
   * clean URLs  — /platform serves platform.html; /platform.html redirects to /platform
   * _redirects  — static "from to status" rules
   * _headers    — "/*" and exact-path rules (security headers, caching)
+  * .assetsignore — listed files are not served (as they are not uploaded)
   * 404.html    — served with status 404 for anything that does not exist
 
 Standard library only; no install needed.
 """
+import fnmatch
 import http.server
 import os
 import sys
@@ -29,6 +31,24 @@ def parse_redirects():
             if len(parts) >= 2:
                 rules[parts[0]] = (parts[1], int(parts[2]) if len(parts) > 2 else 302)
     return rules
+
+
+def is_ignored(path):
+    """True if the URL path falls under a .assetsignore pattern."""
+    rel = path.strip("/")
+    parts = rel.split("/")
+    if rel in ("_headers", "_redirects"):  # config files, never served
+        return True
+    for line in open(os.path.join(ROOT, ".assetsignore"), encoding="utf-8"):
+        pat = line.strip().strip("/")
+        if not pat or pat.startswith("#"):
+            continue
+        if "/" in pat:
+            if rel == pat or rel.startswith(pat + "/"):
+                return True
+        elif any(fnmatch.fnmatch(p, pat) for p in parts):
+            return True
+    return False
 
 
 def parse_headers():
@@ -82,7 +102,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         fs = os.path.join(ROOT, path.lstrip("/"))
         if path != "/" and not os.path.splitext(path)[1] and os.path.isfile(fs + ".html"):
             self.path = path + ".html" + query
-        elif not os.path.exists(fs) or os.path.basename(path).startswith("."):
+        elif not os.path.exists(fs) or is_ignored(path):
             return self.not_found()
         return super().do_GET()
 

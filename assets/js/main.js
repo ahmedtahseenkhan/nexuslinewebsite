@@ -107,7 +107,7 @@
     if (page) {
       document.querySelectorAll('.nav-item').forEach(function(li){
         var a = li.querySelector('a');
-        if (a && a.getAttribute('href') === page + '.html') {
+        if (a && a.getAttribute('href') === '/' + page) {
           li.classList.add('current');
           a.setAttribute('aria-current', 'page');
         }

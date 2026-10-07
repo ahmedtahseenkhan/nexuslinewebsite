@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nexusline.io/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/platform.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/platform</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/modules.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/modules</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/intelligence.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/intelligence</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/security.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/security</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/deployment.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/deployment</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexusline.io/contact.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://nexusline.io/contact</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
